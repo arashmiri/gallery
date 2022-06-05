@@ -87,6 +87,8 @@
                           </div>
                           <!-- /.card-body -->
 
+                                {{-- <input type="hidden" name="hiddenID" value="{{ $product->id }}"> --}}
+
                           <div class="card-footer">
                               <button type="submit" class="btn btn-primary float-left">ذخیره کردن</button>
                           </div>

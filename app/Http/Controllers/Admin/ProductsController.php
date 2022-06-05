@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Products\CreateProcudts;
+use App\Http\Requests\Admin\Products\UpdateProductRequest;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\User;
@@ -177,17 +178,100 @@ class ProductsController extends Controller
         }
     }
 
-    public function update(Request $request , $product_id)
-    {
+    public function update(UpdateProductRequest $request , $product_id)
+    {   
+
+        $validateData = $request->validated();
+
         $images = array();
 
         $product = Product::find($product_id);
 
-        if ($request->thumbnail_url) 
+        if (isset($validateData['thumbnail_url'])) 
         {
-            ImageUploader::upload('public_storage');
+            $images +=
+            [
+                'thumbnail_url' => 
+                [
+                    'storage'=> 'public_storage',
+                    'fileName'=> $validateData['thumbnail_url'] ,
+                    'path' => 'products/' . $validateData['title'] . '/' . 'thumbnail_url_' . $validateData['thumbnail_url']->getClientOriginalName()
+                
+                ]
+            ];
+
+            $product->update
+            (
+                [
+                    'thumbnail_url' => 'products/' . $validateData['title'] . '/' . 'thumbnail_url_' . $validateData['thumbnail_url']->getClientOriginalName(),
+                ]
+            );
         }
 
+        if (isset($validateData['demo_url'])) 
+        {
+            $images += 
+            [
+                'demo_url' => 
+                [
+                    'storage'=> 'public_storage',
+                    'fileName'=> $validateData['demo_url'] ,
+                    'path' => 'products/' . $validateData['title'] . '/' . 'demo_url_' . $validateData['demo_url']->getClientOriginalName()
+                ]
+            ];
 
+            $product->update
+            (
+                [
+                    'demo_url' => 'products/' . $validateData['title'] . '/' . 'demo_url_' . $validateData['demo_url']->getClientOriginalName(),
+                ]
+            );
+        }
+
+        // && $validateData['source_url'] != $product->source_url
+
+        if (isset($validateData['source_url']) && $validateData['source_url'] != $product->source_url)
+        {
+            $images += 
+            [
+                'source_url' => 
+                [
+                    'storage'=> 'local_storage',
+                    'fileName'=> $validateData['source_url'] ,
+                    'path' => 'products/' . $validateData['title'] . '/' . 'source_url_' . $validateData['source_url']->getClientOriginalName()
+                ]
+            ];
+
+            $product->update
+            (
+                [
+                    'source_url' => 'products/' . $validateData['title'] . '/' . 'source_url_' . $validateData['source_url']->getClientOriginalName(),
+                ]
+            );
+        }
+
+        try 
+        {
+            ImageUploader::upload($images);
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+
+        $product->update
+        (
+            [
+                'title'=>$validateData['title'],
+                'category_id'=>$validateData['category_id'],
+                'price'=>$validateData['price'],
+                'description'=>$validateData['description'],
+            ]
+        );
+
+        if($product)
+        {
+            return back()->with('success' , 'محصول با موفقیت ویرایش شد');
+        }else {
+            return back()->with('fail' , 'هنگام ویرایش محصول خطایی رخ داده است');
+        }
     }
 }

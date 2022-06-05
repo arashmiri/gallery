@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\categoriesController;
 use App\Http\Controllers\Admin\OrdersController;
+use App\Http\Controllers\Admin\PaymentsController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\Admin\ProductsController;
 use App\Http\Controllers\Admin\UsersController;
@@ -57,7 +58,7 @@ Route::prefix('admin')->group(function()
         Route::post('create', [ProductsController::class , 'add2'] )->name('admin.products.store');
         Route::delete('delete/{product_id}', [ProductsController::class , 'delete'])->name('admin.products.delete');
         Route::get('{product_id}/edit', [ProductsController::class , 'edit'])->name('admin.products.edit');
-        Route::put('{product_id}/update' , [ProductsController::class , 'add2'])->name('admin.product.update');
+        Route::put('{product_id}/update' , [ProductsController::class , 'update'])->name('admin.product.update');
 
         Route::get('{product_id}/download/demo' , [ProductsController::class , 'downloadDemo'])->name('admin.products.download.demo');
         Route::get('{product_id}/download/source' , [ProductsController::class , 'downloadSource'])->name('admin.products.download.source');
