@@ -3,7 +3,7 @@
 <footer class="bg3 p-t-75 p-b-32">
     <div class="container">
         <div class="row">
-            <div class="col-sm-6 col-lg-3 p-b-50">
+            {{-- <div class="col-sm-6 col-lg-3 p-b-50">
                 <h4 class="stext-301 cl0 p-b-30">
                     دسته بندی ها
                 </h4>
@@ -33,9 +33,9 @@
                         </a>
                     </li>
                 </ul>
-            </div>
+            </div> --}}
 
-            <div class="col-sm-6 col-lg-3 p-b-50">
+            {{-- <div class="col-sm-6 col-lg-3 p-b-50">
                 <h4 class="stext-301 cl0 p-b-30">
                     لینک ها
                 </h4>
@@ -49,23 +49,11 @@
 
                     <li class="p-b-10">
                         <a href="#" class="mtext-106 cl7 hov-cl1 trans-04">
-                            تماس با ما
-                        </a>
-                    </li>
-
-                    <li class="p-b-10">
-                        <a href="#" class="mtext-106 cl7 hov-cl1 trans-04">
-                            نحوه خرید
-                        </a>
-                    </li>
-
-                    <li class="p-b-10">
-                        <a href="#" class="mtext-106 cl7 hov-cl1 trans-04">
                             قوانین
                         </a>
                     </li>
                 </ul>
-            </div>
+            </div> --}}
 
             <div class="col-sm-12 col-lg-6 p-b-50">
                 <h4 class="stext-301 cl0 p-b-30">

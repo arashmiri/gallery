@@ -26,7 +26,7 @@
                   <!-- small box -->
                   <div class="small-box bg-primary">
                       <div class="inner">
-                          <h3>150</h3>
+                          <h3>{{ $orders }}</h3>
 
                           <p>سفارشات جدید</p>
                       </div>
@@ -41,7 +41,7 @@
                   <!-- small box -->
                   <div class="small-box bg-primary">
                       <div class="inner">
-                          <h3>666</h3>
+                          <h3>{{ $categories }}</h3>
 
                           <p>دسته بندی</p>
                       </div>
@@ -56,7 +56,7 @@
                   <!-- small box -->
                   <div class="small-box bg-primary">
                       <div class="inner">
-                          <h3>666</h3>
+                          <h3>{{ $products }}</h3>
 
                           <p>محصول</p>
                       </div>
@@ -71,7 +71,7 @@
                   <!-- small box -->
                   <div class="small-box bg-primary">
                       <div class="inner">
-                          <h3>65</h3>
+                          <h3>{{ $users }}</h3>
 
                           <p>کاربر</p>
                       </div>
@@ -83,7 +83,7 @@
               </div>
               <!-- ./col -->
           </div>
-          <div class="row">
+          {{-- <div class="row">
               <div class="col-12">
                   <div class="card">
                       <div class="card-header no-border">
@@ -129,7 +129,7 @@
       <!-- /.container-fluid -->
     </div>
     <!-- /.content -->
-  </div>
+  </div> --}}
   <!-- /.content-wrapper -->
   
 @endsection

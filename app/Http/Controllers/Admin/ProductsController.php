@@ -172,9 +172,9 @@ class ProductsController extends Controller
         
         if($CreatedProduct)
         {
-            return back()->with('success' , 'شد');
+            return back()->with('success' , 'محصول با موفقیت اضافه شد');
         }else {
-            return back()->with('fail' , 'نشد');
+            return back()->with('fail' , 'هنگام اضافه کردن محصول مشکلی پیش امد');
         }
     }
 

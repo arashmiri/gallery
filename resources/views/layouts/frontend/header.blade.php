@@ -45,16 +45,16 @@
         <div class="top-bar">
             <div class="content-topbar flex-sb-m h-full container">
                 <div class="left-top-bar">
-                    لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ
+                    آرش میری  
                 </div>
 
                 <div class="right-top-bar flex-w h-full">
                     <a href="#" class="flex-c-m trans-04 p-lr-25">
-                        راهنمای خرید و قوانین
+                        98221085111036 
                     </a>
 
                     <a href="#" class="flex-c-m trans-04 p-lr-25">
-                        اکانت من
+                         کارشناسی نرم افزار
                     </a>
                 </div>
             </div>
@@ -75,9 +75,9 @@
                         <li class="active-menu">
                             <a href="/">صفحه اصلی</a>
                         </li>
-                        <li>
+                        {{-- <li>
                             <a href="/">تماس با ما</a>
-                        </li>
+                        </li> --}}
                     </ul>
                 </div>
 

@@ -12,6 +12,16 @@
                             <img src="/images/icons/logo-01.png" style="filter: brightness(0) invert(1);">
                         </a>
                     </li> --}}
+
+                    <li class="nav-item">
+                        <a href="{{route('home.index')}}" class="nav-link">
+                            <i class="nav-icon fas fa-tachometer-alt"></i>
+                            <p>
+                                بازگشت به فروشگاه
+                            </p>
+                        </a>
+                    </li>
+
                     <li class="nav-item has-treeview">
                         <a href="#" class="nav-link active">
                             <i class="nav-icon fa fa-image"></i>
