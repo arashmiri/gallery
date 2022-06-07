@@ -12,6 +12,8 @@ use App\Http\Controllers\Home\CheckoutController;
 use App\Http\Controllers\Home\HomeController;
 use App\Http\Controllers\Home\ProductsController as ProductsHomeController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Authentication\AuthenticationController;
+use App\Http\Controllers\Dashboard\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,12 +33,13 @@ Route::prefix('')->group(function()
     Route::get('{product_id}/addToBasket' , [BasketController::class , 'addToBasket'])->name('home.basket.add');
     Route::get('{product_id}/removeFromBasket' , [BasketController::class , 'removeFromBasket'])->name('home.basket.remove');
     Route::get('checkout' , [CheckoutController::class , 'show'])->name('home.checkout');
+    
 });
 
-Route::prefix('admin')->group(function()
+Route::prefix('/admin')->group(function()
 {
 
-    Route::get('' , [AdminController::class , 'index'])->name('admin.index');
+    Route::get('' , [AdminController::class , 'index'])->name('admin.index')->middleware('auth.basic');
 
     Route::prefix('categories')->group(function()
     {
@@ -89,4 +92,30 @@ Route::prefix('admin')->group(function()
 Route::prefix('payment')->group(function (){
     Route::post('pay', [PaymentController::class, 'pay'])->name('payment.pay');
     Route::post('callback', [PaymentController::class, 'callback'])->name('payment.callback');
+});
+
+
+Route::get('/login', function () {
+    return view('authentication.login');
+})->name('login');
+
+Route::get('/register', function () {
+    return view('authentication.register');
+})->name('register');
+
+Route::post('login', [AuthenticationController::class, 'login'])->name('login');
+
+Route::post('register', [AuthenticationController::class, 'register'])->name('register');
+
+Route::get('logout', [AuthenticationController::class, 'logout'])->name('logout');
+
+Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+Route::get('/read', function () {
+    $user = \App\Models\User::find(1);
+
+    foreach($user->product as $product)
+    {
+        echo $product;
+    }
 });

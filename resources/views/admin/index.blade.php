@@ -28,7 +28,7 @@
                       <div class="inner">
                           <h3>{{ $orders }}</h3>
 
-                          <p>سفارشات جدید</p>
+                          <p>سفارشات </p>
                       </div>
                       <div class="icon">
                           <i class="fa fa-shopping-cart"></i>

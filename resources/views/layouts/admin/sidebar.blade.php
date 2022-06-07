@@ -76,12 +76,12 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="nav-item">
+                    {{-- <li class="nav-item">
                         <a href="{{ route('admin.orders.index') }}" class="nav-link">
                             <i class="nav-icon fa fa-shopping-cart"></i>
                             <p class="text">سفارشات</p>
                         </a>
-                    </li>
+                    </li> --}}
                     <li class="nav-item">
                         <a href="{{ route('admin.payments.index') }}" class="nav-link">
                             <i class="nav-icon fa fa-dollar"></i>

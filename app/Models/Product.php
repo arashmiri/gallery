@@ -25,4 +25,9 @@ class Product extends Model
     {
         return $this->products()->count();
     }
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class);
+    }
 }

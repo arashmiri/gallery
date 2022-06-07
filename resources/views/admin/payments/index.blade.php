@@ -26,7 +26,7 @@
                       <div class="card-header">
                           <h3 class="card-title">لیست پرداخت ها</h3>
 
-                          <div class="card-tools">
+                          {{-- <div class="card-tools">
                               <div class="input-group input-group-sm" style="width: 150px;">
                                   <input type="text" name="table_search" class="form-control float-right" placeholder="جستجو">
 
@@ -34,32 +34,32 @@
                                       <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
                                   </div>
                               </div>
-                          </div>
+                          </div> --}}
                       </div>
                       <!-- /.card-header -->
                       <div class="table table-striped table-valign-middle mb-0">
                           <table class="table table-hover mb-0">
                               <tbody>
                               <tr>
-                                  <th>تاریخ</th>
-                                  <th>قیمت</th>
-                                  <th>آیدی سفارش</th>
-                                  <th>کاربر</th>
-                                  <th>درگاه پرداخت</th>
-                                  <th>تراکنش</th>
-                                  <th>کد رهگیری</th>
+                                    <th>کاربر</th>
+                                    <th>قیمت</th>
+                                    <th>تراکنش</th>
+                                    <th>وضعیت پرداخت</th>
+                                    <th>کد رهگیری</th>
                               </tr>
                               @foreach ($payments as $payment)
                                 <tr>
-                                    <td>{{ $payment->created_at }}</td>
-                                    <td>{{ $payment->order->amount }}</td>
-                                    <td>{{ $payment->id }}</td>
-                                    <td>{{ $payment->order->user->name }}</td>
+                                  <td>{{ $payment->order->user->name }}</td>
+                                    {{-- <td>{{ $payment->created_at }}</td> --}}
                                     <td>
-                                        {{ $payment->gateway }}
+                                      {{ $payment->order->amount }}
+                                    </td>
+
+                                    <td>
+                                      {{ $payment->ref_code }}
                                     </td>
                                     <td>
-                                        <span class="badge bg-success">{{ $payment->status }}</span>
+                                        <span class="badge {{ $payment->status === "paid" ? "bg-success" : "bg-danger" }}">{{ $payment->status }}</span>
                                     </td>
                                     <td>{{ $payment->res_id }}</td>
                                 </tr>

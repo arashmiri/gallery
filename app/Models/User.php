@@ -44,10 +44,10 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function products()
-    {
-        return $this->hasMany(Product::class);
-    }
+    // public function products()
+    // {
+    //     return $this->hasMany(Product::class);
+    // }
 
     public function orders()
     {
@@ -57,5 +57,10 @@ class User extends Authenticatable
     public static function getUserCount()
     {
         return User::count();
+    }
+
+    public function products()
+    {
+        return $this->belongsToMany(Product::class);
     }
 }

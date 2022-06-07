@@ -45,17 +45,36 @@
         <div class="top-bar">
             <div class="content-topbar flex-sb-m h-full container">
                 <div class="left-top-bar">
-                    آرش میری  
+                    @auth
+                        خوش آمدید ، {{Auth::user()->name}}  
+                    @endauth
                 </div>
 
                 <div class="right-top-bar flex-w h-full">
-                    <a href="#" class="flex-c-m trans-04 p-lr-25">
-                        98221085111036 
-                    </a>
 
-                    <a href="#" class="flex-c-m trans-04 p-lr-25">
-                         کارشناسی نرم افزار
-                    </a>
+                    @auth
+                        <a href="{{ route('dashboard') }}" class="flex-c-m trans-04 p-lr-25">
+                            داشبورد
+                        </a>
+                    @endauth
+
+                    @auth
+                        <a href="{{ route('logout') }}" class="flex-c-m trans-04 p-lr-25">
+                            خروج از حساب
+                        </a>
+                    @endauth
+
+                    @guest
+                        <a href="{{ route('register') }}" class="flex-c-m trans-04 p-lr-25">
+                            ساخت حساب کاربری                            
+                        </a>
+                    @endguest
+
+                    @guest
+                        <a href="{{ route('login') }}" class="flex-c-m trans-04 p-lr-25">
+                            لاگین                            
+                        </a>
+                    @endguest
                 </div>
             </div>
         </div>
