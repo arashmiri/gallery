@@ -111,11 +111,22 @@ Route::get('logout', [AuthenticationController::class, 'logout'])->name('logout'
 
 Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
+// Route::get('/read', function () {
+//     $user = \App\Models\User::find(1);
+
+//     foreach($user->product as $product)
+//     {
+//         echo $product;
+//     }
+// });
+
 Route::get('/read', function () {
+    //$user = \App\Models\User::find(Auth::user()->id);
+
     $user = \App\Models\User::find(1);
 
-    foreach($user->product as $product)
+    foreach($user->products as $product)
     {
-        echo $product;
+        echo $product->title;
     }
 });
