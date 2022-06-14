@@ -9,12 +9,14 @@ use App\Models\Payment;
 use App\Models\Order;
 use illuminate\support\Str;
 use App\Models\Product;
+use App\Services\Basket\BasketService;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Mail;
 use App\Services\Payment\PaymentService;
 use Illuminate\Http\Request;
 use App\Services\Payment\Requests\IDPayRequest;
 use App\Services\Payment\Requests\IDPayVerifyRequest;
+use Illuminate\Support\Facades\Auth;
 
 class PaymentController extends Controller
 {
@@ -22,12 +24,14 @@ class PaymentController extends Controller
     {
         $validatedData = $request->validated();
 
-        $user = User::firstOrCreate([
-            'email' => $validatedData['email'],
-        ],[
-            'name' => $validatedData['name'],
-            'mobile' => $validatedData['mobile'],
-        ]);
+        // $user = User::firstOrCreate([
+        //     'email' => $validatedData['email'],
+        // ],[
+        //     'name' => $validatedData['name'],
+        //     'mobile' => $validatedData['mobile'],
+        // ]);
+
+        $user = Auth::user();
 
         try{
             
@@ -87,6 +91,7 @@ class PaymentController extends Controller
 
     public function callback(Request $request)
     {
+
         $paymentInfo = $request->all();
 
         $IDPayVerifyRequest = new IDPayVerifyRequest([
@@ -121,11 +126,24 @@ class PaymentController extends Controller
                 return $orderItem->product->source_url;
             });
 
-            Cookie::queue('basket', null);
-
             Mail::to($currentUser)->send(new sendOrderImages($reservedImages->toArray() , $currentUser));
 
-            return redirect()->route('home.index')->with('success' , 'پرداخت شما با موفقیت انجام شد');
+            //return redirect()->route('home.index')->with('success' , 'پرداخت شما با موفقیت انجام شد');
+            return redirect()->route('payment.attach');
+    }
 
+    public function attach()
+    {
+        //dd(Auth::user());
+
+        $user = \App\Models\User::find(Auth::user()->id);
+
+        $basketItems = array_keys(json_decode(Cookie::get('basket'), true));
+    
+        $user->products()->attach($basketItems);
+
+        Cookie::queue('basket' , null);
+
+        return redirect()->route('home.index')->with('success' , 'پرداخت شما با موفقیت انجام شد');
     }
 }

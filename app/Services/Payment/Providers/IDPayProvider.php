@@ -2,6 +2,7 @@
 
 namespace App\Services\Payment\Providers;
 
+use App\Services\Basket\BasketService;
 use App\Services\Payment\Contracts\PayableInterface;
 use App\Services\Payment\Contracts\VerifaibleInterface;
 use App\Services\Payment\Contracts\AbstractProviderInterface;

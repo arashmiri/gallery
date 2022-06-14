@@ -14,6 +14,7 @@ use App\Http\Controllers\Home\ProductsController as ProductsHomeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Authentication\AuthenticationController;
 use App\Http\Controllers\Dashboard\DashboardController;
+use App\Services\Basket\BasketService;
 
 /*
 |--------------------------------------------------------------------------
@@ -92,6 +93,7 @@ Route::prefix('/admin')->group(function()
 Route::prefix('payment')->group(function (){
     Route::post('pay', [PaymentController::class, 'pay'])->name('payment.pay');
     Route::post('callback', [PaymentController::class, 'callback'])->name('payment.callback');
+    Route::get('attach', [PaymentController::class, 'attach'])->name('payment.attach');
 });
 
 
@@ -111,15 +113,6 @@ Route::get('logout', [AuthenticationController::class, 'logout'])->name('logout'
 
 Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
-// Route::get('/read', function () {
-//     $user = \App\Models\User::find(1);
-
-//     foreach($user->product as $product)
-//     {
-//         echo $product;
-//     }
-// });
-
 Route::get('/read', function () {
     //$user = \App\Models\User::find(Auth::user()->id);
 
@@ -130,3 +123,13 @@ Route::get('/read', function () {
         echo $product->title;
     }
 });
+
+Route::get('m2m', function () 
+{
+    $user = \App\Models\User::find(7);
+
+    $product = \App\Models\Product::latest()->take(2)->get();
+
+    $user->products()->attach($product);
+});
+

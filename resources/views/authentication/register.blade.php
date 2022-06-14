@@ -12,6 +12,8 @@
 
     email: <input type="text" name="email"><br>
 
+    mobile: <input type="text" name="mobile"><br>
+
     password: <input type="text" name="password"><br>
 
     <input type="submit">

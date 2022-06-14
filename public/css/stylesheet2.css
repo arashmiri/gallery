@@ -1,0 +1,259 @@
+html {
+    font-size: 14px;
+    direction: rtl;
+    min-height: 100%;
+}
+
+body {
+    min-height: 100%;
+    background-color: #5651e5;
+}
+
+body, * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.d-flex {
+    display: flex;
+}
+
+.flex-column {
+    flex-direction: column;
+}
+
+.justify-content-center {
+    justify-content: center;
+}
+
+.align-items-center {
+    align-items: center;
+}
+
+
+.rounded-6 {
+    border-radius: 1rem;
+}
+
+.rounded-circle {
+    border-radius: 100%;
+}
+
+.shadow-sm {
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+}
+
+.shadow-lg {
+    box-shadow: 0 0.125rem 1rem rgba(0, 0, 0, 0.1);
+}
+
+.min-h-vh {
+    min-height: 100vh;
+}
+
+.bg-dark-5 {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.bg-dark-10 {
+    background-color: rgba(0, 0, 0, 0.10);
+}
+
+.bg-dark-25 {
+    background-color: rgba(0, 0, 0, 0.25);
+}
+
+.bg-dark-50 {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.bg-dark-75 {
+    background-color: rgba(0, 0, 0, 0.75);
+}
+
+.bg-dark-100 {
+    background-color: rgba(0, 0, 0, 1);
+}
+
+.bg-white-5 {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.bg-white-10 {
+    background-color: rgba(255, 255, 255, 0.10);
+}
+
+.bg-white-25 {
+    background-color: rgba(255, 255, 255, 0.25);
+}
+
+.bg-white-50 {
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.bg-white-75 {
+    background-color: rgba(255, 255, 255, 0.75);
+}
+
+.bg-white-100 {
+    background-color: rgba(255, 255, 255, 1);
+}
+
+.min-w-1 {
+    min-width: 1rem;
+}
+
+.min-w-2 {
+    min-width: 2rem;
+}
+
+.min-w-3 {
+    min-width: 3rem;
+}
+
+.min-w-4 {
+    min-width: 4rem;
+}
+
+.min-w-5 {
+    min-width: 5rem;
+}
+
+.min-w-6 {
+    min-width: 6rem;
+}
+
+.min-h-1 {
+    min-height: 1rem;
+}
+
+.min-h-2 {
+    min-height: 2rem;
+}
+
+.min-h-3 {
+    min-height: 3rem;
+}
+
+.min-h-4 {
+    min-height: 4rem;
+}
+
+.min-h-5 {
+    min-height: 5rem;
+}
+
+.min-h-6 {
+    min-height: 6rem;
+}
+
+.p-0 {
+    padding: 0;
+}
+
+.p-1 {
+    padding: 0.25rem;
+}
+
+.p-2 {
+    padding: 0.5rem;
+}
+
+.p-3 {
+    padding: 0.75rem;
+}
+
+.p-4 {
+    padding: 1rem;
+}
+
+.p-5 {
+    padding: 1.25rem;
+}
+
+.p-6 {
+    padding: 1.5rem;
+}
+
+.py-0 {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.py-1 {
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+}
+
+.py-3 {
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+}
+
+.py-4 {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+.py-5 {
+    padding-top: 1.25rem;
+    padding-bottom: 1.25rem;
+}
+
+
+.flex-grow-1 {
+    flex-grow: 1;
+}
+
+.w-1 {
+    width: 1rem;
+}
+
+.w-2 {
+    width: 2rem;
+}
+
+.w-3 {
+    width: 3rem;
+}
+
+.w-4 {
+    width: 4rem;
+}
+
+.h-4 {
+    height: 4rem;
+}
+
+.img-cover {
+    object-fit: cover;
+}
+
+.gap-2 {
+    gap: 0.5rem;
+}
+
+.gap-3 {
+    gap: 1rem;
+}
+
+a {
+    text-decoration: none;
+}
+
+.item-blue:nth-child(even) {
+    background-color: rgba(0, 0, 255, 0.1);
+}
+
+.item-blue:nth-child(odd) {
+    background-color: rgba(0, 0, 255, 0.08);
+}
+
+.min-w-30 {
+    min-width: 30rem;
+}
+
+.min-w-40 {
+    min-width: 40rem;
+}

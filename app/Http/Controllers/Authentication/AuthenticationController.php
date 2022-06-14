@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Hash;
 
 class AuthenticationController extends Controller
@@ -19,7 +20,9 @@ class AuthenticationController extends Controller
  
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
- 
+            
+            Cookie::queue('basket' , null);
+
             return redirect()->route('home.index');
         }
  
@@ -33,12 +36,14 @@ class AuthenticationController extends Controller
         $credentials = $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'mobile' => ['required', 'string' , 'max:11'],
             'password' => ['required', 'string',],
         ]);
  
         $user = User::create([
             'name' => $credentials['name'],
             'email' => $credentials['email'],
+            'mobile' => $credentials['mobile'],
             'password' => Hash::make($credentials['password'])
         ]);
  
