@@ -57,6 +57,8 @@ class AuthenticationController extends Controller
     public function logout()
     {
         Auth::logout();
+
+        Cookie::queue('basket' , null);
  
         return redirect()->route('home.index');
     }

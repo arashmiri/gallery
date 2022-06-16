@@ -6,18 +6,18 @@
     <!-- breadcrumb -->
     <div class="container">
         <div class="bread-crumb flex-w p-t-30">
-            <a href="index.html" class="mtext-106 cl8 hov-cl1 trans-04">
+            <a href="{{ route('home.index') }}" class="mtext-106 cl8 hov-cl1 trans-04">
                 خانه
                 <i class="fa fa-angle-left m-l-9 m-r-10" aria-hidden="true"></i>
             </a>
 
-            <a href="product.html" class="mtext-106 cl8 hov-cl1 trans-04">
-                کارت ویزیت
+            <span class="mtext-106 cl4">
+                دسته بندی  {{$category->title}} 
                 <i class="fa fa-angle-left m-l-9 m-r-10" aria-hidden="true"></i>
-            </a>
+            </span>
 
             <span class="mtext-106 cl4">
-				کارت ویزیت مشاور املاک
+				محصول {{$product->title}}
 			</span>
         </div>
     </div>
@@ -73,15 +73,17 @@
                 <div class="col-md-6 col-lg-5 p-b-30">
                     <div class="p-r-50 p-t-5 p-lr-0-lg">
                         <h4 class="mtext-105 cl2 js-name-detail p-b-14">
+                            نام محصول : 
                             {{ $product->title }}
                         </h4>
 
                         <span class="mtext-106 cl2">
-                            {{ $product->price }}  
+                            قیمت :  {{ $product->price }} تومان
 						</span>
 
                         <p class="stext-102 cl3 p-t-23">
-                            {!! $product->description !!}
+                            توضیحات : 
+                            {!! Str::limit($product->description, 165 , ' ...') !!}
                         </p>
 
                         <!--  -->
@@ -117,7 +119,7 @@
                         <div class="tab-pane fade show active" id="description" role="tabpanel">
                             <div class="how-pos2 p-lr-15-md">
                                 <p class="mtext-106 cl6" style="line-height: 40px">
-                                    لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه درصد گذشته حال و آینده، شناخت فراوان جامعه و متخصصان را می طلبد، تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی، و فرهنگ پیشرو در زبان فارسی ایجاد کرد، در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها، و شرایط سخت تایپ به پایان رسد و زمان مورد نیاز شامل حروفچینی دستاوردهای اصلی، و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.
+                                    {!! $product->description !!}
                                 </p>
                             </div>
                         </div>
@@ -179,10 +181,6 @@
                             <div class="block2">
                                 <div class="block2-pic hov-img0">
                                     <img src="/{{ $simillarProduct->demo_url }}" alt="IMG-PRODUCT">
-
-                                    <a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
-                                        مشاهده سریع
-                                    </a>
                                 </div>
 
                                 <div class="block2-txt flex-w flex-t p-t-14">

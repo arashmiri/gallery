@@ -37,7 +37,10 @@ class ProductsController extends Controller
 
         $simillarProducts = Product::where('category_id' , $product->category_id)->take(4)->get();
 
-        return view('frontend.products.single' , compact('product' , 'simillarProducts'));
+        //find product category and get category
+        $category = Category::find($product->category_id);
+
+        return view('frontend.products.single' , compact('product' , 'simillarProducts' , 'category'));
     }
 
     private function findFilter(string $className, string $methodName)

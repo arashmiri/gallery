@@ -31,7 +31,7 @@ Route::prefix('')->group(function()
 {
     Route::get('' , [ProductsHomeController::class , 'index'])->name('home.index');
     Route::get('{product_id}/show' , [ProductsHomeController::class , 'show'])->name('home.product.show');
-    Route::get('{product_id}/addToBasket' , [BasketController::class , 'addToBasket'])->name('home.basket.add');
+    Route::get('{product_id}/addToBasket' , [BasketController::class , 'addToBasket'])->name('home.basket.add')->middleware('auth');
     Route::get('{product_id}/removeFromBasket' , [BasketController::class , 'removeFromBasket'])->name('home.basket.remove');
     Route::get('checkout' , [CheckoutController::class , 'show'])->name('home.checkout');
     
@@ -40,7 +40,7 @@ Route::prefix('')->group(function()
 Route::prefix('/admin')->group(function()
 {
 
-    Route::get('' , [AdminController::class , 'index'])->name('admin.index')->middleware('auth.basic');
+    Route::get('' , [AdminController::class , 'index'])->name('admin.index');
 
     Route::prefix('categories')->group(function()
     {

@@ -20,9 +20,9 @@ use Illuminate\Support\Facades\Auth;
 
 class PaymentController extends Controller
 {
-    public function pay(PayRequest $request)
+    public function pay(Request $request)
     {
-        $validatedData = $request->validated();
+        
 
         // $user = User::firstOrCreate([
         //     'email' => $validatedData['email'],

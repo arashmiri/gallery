@@ -33,16 +33,19 @@
             </div>
             
             <!-- Search product -->
+            
             <div class="dis-none panel-search w-full p-t-10 p-b-15">
-                <div class="bor8 dis-flex p-l-15">
-                    <button class="size-113 flex-c-m fs-16 cl2 hov-cl1 trans-04">
-                        <i class="zmdi zmdi-search"></i>
-                    </button>
+                <form action="{{ route('home.index') }}">
+                    <div class="bor8 dis-flex p-l-15">
+                        <button class="size-113 flex-c-m fs-16 cl2 hov-cl1 trans-04">
+                            <i class="zmdi zmdi-search"></i>
+                        </button>
 
-                    <input class="mtext-107 cl2 size-114 plh2 p-r-15" type="text" name="search-product" placeholder="متن خود را اینجا بنویسید و enter بزنید ...">
-                </div>	
+                        <input class="mtext-107 cl2 size-114 plh2 p-r-15" type="text" name="search" placeholder="متن خود را اینجا بنویسید و enter بزنید ...">
+                    </div>	
+                </form>
             </div>
-
+            
             <!-- Filter -->
             <div class="dis-none panel-filter w-full p-t-10">
                 <div class="wrap-filter flex-w bg6 w-full p-lr-40 p-t-27 p-lr-15-sm">

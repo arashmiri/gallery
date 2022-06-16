@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Home;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cookie;
 
 class CheckoutController extends Controller
@@ -14,6 +15,9 @@ class CheckoutController extends Controller
 
         $productPrice = array_sum(array_column($products, 'price'));
 
-        return view('frontend.checkout' , compact('products', 'productPrice'));
+        //get authenticate user
+        $user = Auth::user();
+
+        return view('frontend.checkout' , compact('products', 'productPrice' , 'user'));
     }
 }

@@ -77,16 +77,11 @@
                                 <div class="w-full">
                                     <div class="p-t-15">
 
-                                        <div class="bor8 bg0 m-b-12">
-                                            <input class="stext-111 cl8 plh3 size-111 p-lr-15" type="text" name="name" placeholder="نام و نام خانوادگی">
-                                        </div>
-                                        <div class="bor8 bg0 m-b-12">
-                                            <input class="stext-111 cl8 plh3 size-111 p-lr-15" type="text" name="mobile" placeholder="موبایل">
-                                        </div>
+                                            نام : {{ $user->name }} <br>
 
-                                        <div class="bor8 bg0 m-b-22">
-                                            <input class="stext-111 cl8 plh3 size-111 p-lr-15" type="text" name="email" placeholder="ایمیل">
-                                        </div>
+                                            موبایل : {{ $user->mobile }} <br>
+
+                                            ایمیل : {{ $user->email }} <br>
 
                                     </div>
                                 </div>
