@@ -33,23 +33,27 @@ class AuthenticationController extends Controller
 
     public function register(Request $request)
     {
-        $credentials = $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'mobile' => ['required', 'string' , 'max:11'],
-            'password' => ['required', 'string',],
-        ]);
- 
-        $user = User::create([
-            'name' => $credentials['name'],
-            'email' => $credentials['email'],
-            'mobile' => $credentials['mobile'],
-            'password' => Hash::make($credentials['password'])
-        ]);
- 
-        $token = $user->createToken('MyApp')->accessToken;
- 
-        //return response()->json(['token' => $token], 200);
+        try {
+
+            $credentials = $request->validate([
+                'name' => ['required', 'string', 'max:255'],
+                'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+                'mobile' => ['required', 'string' , 'max:11'],
+                'password' => ['required', 'string',],
+            ]);
+     
+            $user = User::create([
+                'name' => $credentials['name'],
+                'email' => $credentials['email'],
+                'mobile' => $credentials['mobile'],
+                'password' => Hash::make($credentials['password'])
+            ]);
+     
+            $token = $user->createToken('MyApp')->accessToken;
+
+        } catch (\Throwable $th) {
+            return redirect()->route('register')->with('fail', 'Something went wrong');
+        }
 
         return redirect()->route('register')->with('success', 'You are registered successfully.');
     }

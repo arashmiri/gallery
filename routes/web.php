@@ -99,11 +99,11 @@ Route::prefix('payment')->group(function (){
 
 Route::get('/login', function () {
     return view('authentication.login');
-})->name('login');
+})->name('authentication.login');
 
 Route::get('/register', function () {
     return view('authentication.register');
-})->name('register');
+})->name('authentication.register');
 
 Route::post('login', [AuthenticationController::class, 'login'])->name('login');
 
