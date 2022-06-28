@@ -4,7 +4,8 @@
   <meta charset="UTF-8">
   <title>Login Page with Background Image Example</title>
   <link rel="stylesheet" href="/css/auth.css">
-
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  
 </head>
 <body>
 <!-- partial:index.partial.html -->
@@ -35,7 +36,7 @@
     </div>
   
     <div class="form-field">
-        <button class="btn" style="background-color: blue ; " type="submit"><a style="text-decoration:none; color:white" href="{{ route('authentication.login') }}">بازگشت به صفحه ورود</a></button>
+        <button class="btn" style="background-color: blue ; " type="submit"><a style="text-decoration:none; color:white" href="{{ route('home.index') }}">بازگشت به  فروشگاه</a></button>
         <button class="btn" type="submit">ایجاد حساب</button>
     </div>
 </form>

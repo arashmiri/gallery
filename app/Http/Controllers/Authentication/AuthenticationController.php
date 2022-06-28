@@ -26,9 +26,7 @@ class AuthenticationController extends Controller
             return redirect()->route('home.index');
         }
  
-        return back()->withErrors([
-            'email' => 'The provided credentials do not match our records.',
-        ])->onlyInput('email');
+        return back()->with('fail' , 'نام کاربری یا رمز عبور اشتباه است');
     }
 
     public function register(Request $request)

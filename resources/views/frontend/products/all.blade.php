@@ -146,6 +146,24 @@
                     <div class="block2-pic hov-img0">
                         <img src="/{{ $product->demo_url }}" alt="IMG-PRODUCT">
 
+                        
+                        @auth
+                            @php
+                            $user = \App\Models\User::find(Auth::user()->id)
+                            @endphp
+
+                            @foreach($user->products as $own_product)  
+                                @if ($own_product->id == $product->id) 
+                                
+                                    <a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
+                                        خریداری شده
+                                    </a>
+                                    
+                                @endif
+                            @endforeach
+                        
+                        @endauth
+
                             {{-- <a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
                                 مشاهده سریع
                             </a> --}}

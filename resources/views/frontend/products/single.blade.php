@@ -86,15 +86,73 @@
                             {!! Str::limit($product->description, 165 , ' ...') !!}
                         </p>
 
-                        <!--  -->
-                        <div class="p-t-33">
+                            @if(Auth::check())
+                                
+                                @php
+                                    global $ownProducts;
+                                    $user = \App\Models\User::find(Auth::user()->id)
+                                @endphp
+                
+                                {{-- @foreach($user->products as $own_product)  
+                                    @if ($own_product->id == $product->id) 
+                                                
+                                        <div class="p-t-33">
+                                            <div class="flex-w flex-r-m p-b-10">
+                                                <div class="flex-w flex-m respon6-next">
+                                                    <a href="{{ route('admin.products.download.source' , $product->id) }}" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">دانلود</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                              
+                                    @else
+                                        <div class="p-t-33">
+        
+                                            <div class="flex-w flex-r-m p-b-10">
+                                                <div class="flex-w flex-m respon6-next">
+                                                    <a href="{{ route('home.basket.add' , $product->id) }}" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail"> افزودن به سبد خرید </a>
+                                                </div>
+                                            </div>
+            
+                                        </div>
+                                    @endif
+                                @endforeach   --}}
 
-                            <div class="flex-w flex-r-m p-b-10">
-                                <div class="flex-w flex-m respon6-next">
-                                    <a href="{{ route('home.basket.add' , $product->id) }}" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail"> افزودن به سبد خرید </a>
+                                @foreach($user->products as $own_product)  
+                                    {{$ownProducts[] = $own_product->id}}
+                                @endforeach
+                                @if(in_array($product->id , $ownProducts))
+                                    <div class="p-t-33">
+                                        <div class="flex-w flex-r-m p-b-10">
+                                            <div class="flex-w flex-m respon6-next">
+                                                <a href="{{ route('admin.products.download.source' , $product->id) }}" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">دانلود</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                      
+                                @else
+                                    <div class="p-t-33">
+
+                                        <div class="flex-w flex-r-m p-b-10">
+                                            <div class="flex-w flex-m respon6-next">
+                                                <a href="{{ route('home.basket.add' , $product->id) }}" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail"> افزودن به سبد خرید </a>
+                                            </div>
+                                        </div>
+        
+                                    </div>
+                                @endif
+
+                                
+                            @else
+                                <div class="p-t-33">
+
+                                    <div class="flex-w flex-r-m p-b-10">
+                                        <div class="flex-w flex-m respon6-next">
+                                            <a href="{{ route('home.basket.add' , $product->id) }}" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail"> افزودن به سبد خرید </a>
+                                        </div>
+                                    </div>
+    
                                 </div>
-                            </div>
-                        </div>
+                            @endif
                     </div>
                 </div>
             </div>
