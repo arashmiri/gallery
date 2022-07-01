@@ -78,7 +78,7 @@
                               </div>
                               <div class="form-group">
                                   <label>توضیحات</label>
-                                  <textarea name="description" id="editor">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi similique nihil expedita aperiam sapiente? Quo placeat dolor est temporibus at quae sapiente nesciunt, explicabo aliquid repudiandae suscipit perferendis! Accusantium, officiis.</textarea>
+                                  <textarea name="description" id="editor"></textarea>
                               </div>
                           </div>
                           <!-- /.card-body -->

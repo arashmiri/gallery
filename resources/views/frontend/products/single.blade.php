@@ -12,12 +12,12 @@
             </a>
 
             <span class="mtext-106 cl4">
-                دسته بندی  {{$category->title}} 
+                {{$category->title}} 
                 <i class="fa fa-angle-left m-l-9 m-r-10" aria-hidden="true"></i>
             </span>
 
             <span class="mtext-106 cl4">
-				محصول {{$product->title}}
+				{{$product->title}}
 			</span>
         </div>
     </div>
@@ -118,9 +118,9 @@
                                 @endforeach   --}}
 
                                 @foreach($user->products as $own_product)  
-                                    {{$ownProducts[] = $own_product->id}}
+                                    {{$ownProducts[] = $own_product->id ?? "idontKnow"}}
                                 @endforeach
-                                @if(in_array($product->id , $ownProducts))
+                                @if(!is_null($ownProducts) and in_array($product->id , $ownProducts))
                                     <div class="p-t-33">
                                         <div class="flex-w flex-r-m p-b-10">
                                             <div class="flex-w flex-m respon6-next">

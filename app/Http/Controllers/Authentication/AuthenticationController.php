@@ -50,10 +50,11 @@ class AuthenticationController extends Controller
             $token = $user->createToken('MyApp')->accessToken;
 
         } catch (\Throwable $th) {
-            return redirect()->route('register')->with('fail', 'Something went wrong');
+            return redirect()->route('register')->with('fail', 'خطا در ثبت نام');
         }
 
-        return redirect()->route('register')->with('success', 'You are registered successfully.');
+        //return redirect()->route('register')->with('success', 'حساب شما با موفقیت ایجاد شد');
+        session()->flash('success', 'حساب شما با موفقیت ایجاد شد'); return redirect()->route('login');
     }
 
     public function logout()

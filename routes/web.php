@@ -40,7 +40,7 @@ Route::prefix('')->group(function()
 Route::prefix('/admin')->group(function()
 {
 
-    Route::get('' , [AdminController::class , 'index'])->name('admin.index');
+    Route::get('' , [AdminController::class , 'index'])->name('admin.index')->middleware('auth.basic');
 
     Route::prefix('categories')->group(function()
     {
