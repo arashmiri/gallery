@@ -111,25 +111,25 @@ Route::post('register', [AuthenticationController::class, 'register'])->name('re
 
 Route::get('logout', [AuthenticationController::class, 'logout'])->name('logout');
 
-Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
+Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware('auth');
 
-Route::get('/read', function () {
-    //$user = \App\Models\User::find(Auth::user()->id);
+// Route::get('/read', function () {
+//     //$user = \App\Models\User::find(Auth::user()->id);
 
-    $user = \App\Models\User::find(1);
+//     $user = \App\Models\User::find(1);
 
-    foreach($user->products as $product)
-    {
-        echo $product->title;
-    }
-});
+//     foreach($user->products as $product)
+//     {
+//         echo $product->title;
+//     }
+// });
 
-Route::get('m2m', function () 
-{
-    $user = \App\Models\User::find(7);
+// Route::get('m2m', function () 
+// {
+//     $user = \App\Models\User::find(7);
 
-    $product = \App\Models\Product::latest()->take(2)->get();
+//     $product = \App\Models\Product::latest()->take(2)->get();
 
-    $user->products()->attach($product);
-});
+//     $user->products()->attach($product);
+// });
 
