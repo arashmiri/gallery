@@ -44,7 +44,8 @@ class AuthenticationController extends Controller
                 'name' => $credentials['name'],
                 'email' => $credentials['email'],
                 'mobile' => $credentials['mobile'],
-                'password' => Hash::make($credentials['password'])
+                'password' => Hash::make($credentials['password']),
+                'role' => 'user'
             ]);
      
             $token = $user->createToken('MyApp')->accessToken;
