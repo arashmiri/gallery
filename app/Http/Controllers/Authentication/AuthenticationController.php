@@ -36,7 +36,7 @@ class AuthenticationController extends Controller
             $credentials = $request->validate([
                 'name' => ['required', 'string', 'max:255'],
                 'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-                'mobile' => ['required', 'string' , 'max:11'],
+                'mobile' => ['required', 'string' , 'max:11' , 'regex:/^09[0-9]{9}$/'],
                 'password' => ['required', 'string',],
             ]);
      
