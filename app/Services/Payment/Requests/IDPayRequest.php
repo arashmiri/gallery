@@ -7,8 +7,11 @@ use App\Services\Payment\Contracts\RequestInterface;
 class IDPayRequest implements RequestInterface
 {
     private $user;
+
     private $amount;
+
     private $orderId;
+
     private $apiKey;
 
     public function __construct(array $data)

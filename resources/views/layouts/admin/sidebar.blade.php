@@ -44,7 +44,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{ route('admin.categories.all') }}" class="nav-link">
+                                <a href="{{ route('admin.categories.index') }}" class="nav-link">
                                     <i class="nav-icon fa fa-sitemap"></i>
                                     <p>دسته بندی ها</p>
                                 </a>

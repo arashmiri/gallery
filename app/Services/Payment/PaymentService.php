@@ -5,13 +5,14 @@ namespace App\Services\Payment;
 use App\Services\Payment\Contracts\RequestInterface;
 use App\Services\Payment\Exceptions\ProviderNotFoundException;
 
-
-class PaymentService 
+class PaymentService
 {
     public const IDPAY = 'IDPayProvider';
+
     public const ZARINPAL = 'ZarinpalProvider';
 
     private string $providerName;
+
     private RequestInterface $request;
 
     public function __construct(string $providerName, RequestInterface $request)
@@ -22,10 +23,9 @@ class PaymentService
 
     private function findProvider()
     {
-        $className = 'App\Services\Payment\Providers\\' . $this->providerName;
-        
-        if(!class_exists($className))
-        {
+        $className = 'App\Services\Payment\Providers\\'.$this->providerName;
+
+        if (! class_exists($className)) {
             throw new ProviderNotFoundException('درگاه پرداخت انتخاب شده پیدا نشد');
         }
 

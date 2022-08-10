@@ -27,7 +27,7 @@ class CreateUser extends FormRequest
             'name' => 'required',
             'email' => 'required|email',
             'mobile' => 'required|digits:11|unique:users,mobile',
-            'role' => 'required|in:admin,user'
+            'role' => 'required|in:admin,user',
         ];
     }
 }

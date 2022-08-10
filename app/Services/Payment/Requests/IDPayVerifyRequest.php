@@ -7,7 +7,9 @@ use App\Services\Payment\Contracts\RequestInterface;
 class IDPayVerifyRequest implements RequestInterface
 {
     private $id;
+
     private $orderId;
+
     private $apiKey;
 
     public function __construct(array $data)

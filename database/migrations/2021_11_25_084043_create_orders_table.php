@@ -17,7 +17,7 @@ class CreateOrdersTable extends Migration
             $table->id();
             $table->unsignedInteger('amount');
             $table->char('ref_code', 128)->nullable();
-            $table->enum('status', ['unpaid','paid']);
+            $table->enum('status', ['unpaid', 'paid']);
 
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

@@ -9,78 +9,69 @@ use App\Models\Category;
 use App\Models\Product;
 use App\Models\User;
 use App\Utilities\ImageUploader;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\Storage;
 
 class ProductsController extends Controller
 {
-
     public function all()
     {
         $products = Product::paginate(5);
 
-        return view('admin.products.all' , compact('products'));
+        return view('admin.products.all', compact('products'));
     }
 
     public function create()
     {
         $categories = Category::all();
-        return view('admin.products.create' , compact('categories'));
+
+        return view('admin.products.create', compact('categories'));
     }
 
     public function add(CreateProcudts $request)
     {
         $validateData = $request->validated();
 
-        $user = User::where('email' , 'admin@gmail.com')->first();
+        $user = User::where('email', 'admin@gmail.com')->first();
 
-        $CreatedProduct = Product::create
-        (
+        $CreatedProduct = Product::create(
             [
-                'title'=>$validateData['title'],
-                'category_id'=>$validateData['category_id'],
-                'price'=>$validateData['price'],
-                'description'=>$validateData['description'],
-                'user_id'=>$user->id
+                'title' => $validateData['title'],
+                'category_id' => $validateData['category_id'],
+                'price' => $validateData['price'],
+                'description' => $validateData['description'],
+                'user_id' => $user->id,
             ]
         );
 
-        $images=array
-        (
-                'thumbnail_url' => 
-                [
-                    'storage'=> 'public_storage',
-                    'fileName'=> $validateData['demo_url'] ,
-                    'path' => 'products/' . $CreatedProduct->id . '/' . 'thumbnail_url_' . $validateData['thumbnail_url']->getClientOriginalName()
-                ],
-                'demo_url' => 
-                [
-                    'storage'=> 'public_storage',
-                    'fileName'=> $validateData['demo_url'] ,
-                    'path' => 'products/' . $CreatedProduct->id . '/' . 'demo_url_' . $validateData['thumbnail_url']->getClientOriginalName()
-                ],
-                'source_url' => 
-                [
-                    'storage'=> 'local_storage',
-                    'fileName'=> $validateData['source_url'] ,
-                    'path' => 'products/' . $CreatedProduct->id . '/' . 'source_url_' . $validateData['thumbnail_url']->getClientOriginalName()
-                ]
-        );
+        $images = [
+            'thumbnail_url' => [
+                'storage' => 'public_storage',
+                'fileName' => $validateData['demo_url'],
+                'path' => 'products/'.$CreatedProduct->id.'/'.'thumbnail_url_'.$validateData['thumbnail_url']->getClientOriginalName(),
+            ],
+            'demo_url' => [
+                'storage' => 'public_storage',
+                'fileName' => $validateData['demo_url'],
+                'path' => 'products/'.$CreatedProduct->id.'/'.'demo_url_'.$validateData['thumbnail_url']->getClientOriginalName(),
+            ],
+            'source_url' => [
+                'storage' => 'local_storage',
+                'fileName' => $validateData['source_url'],
+                'path' => 'products/'.$CreatedProduct->id.'/'.'source_url_'.$validateData['thumbnail_url']->getClientOriginalName(),
+            ],
+        ];
 
         ImageUploader::upload($images);
 
         $CreatedProduct->update([
-            'thumbnail_url'=>'products/' . $CreatedProduct->id . '/' . 'thumbnail_url_' . $validateData['thumbnail_url']->getClientOriginalName() ,
-            'demo_url'=>'products/' . $CreatedProduct->id . '/' . 'demo_url_' . $validateData['thumbnail_url']->getClientOriginalName() ,
-            'source_url'=> 'products/' . $CreatedProduct->id . '/' . 'source_url_' . $validateData['thumbnail_url']->getClientOriginalName()
+            'thumbnail_url' => 'products/'.$CreatedProduct->id.'/'.'thumbnail_url_'.$validateData['thumbnail_url']->getClientOriginalName(),
+            'demo_url' => 'products/'.$CreatedProduct->id.'/'.'demo_url_'.$validateData['thumbnail_url']->getClientOriginalName(),
+            'source_url' => 'products/'.$CreatedProduct->id.'/'.'source_url_'.$validateData['thumbnail_url']->getClientOriginalName(),
         ]);
 
-        if($CreatedProduct)
-        {
-            return back()->with('success' , 'شد');
-        }else {
-            return back()->with('fail' , 'نشد');
+        if ($CreatedProduct) {
+            return back()->with('success', 'شد');
+        } else {
+            return back()->with('fail', 'نشد');
         }
     }
 
@@ -90,11 +81,10 @@ class ProductsController extends Controller
 
         $product->delete();
 
-        if($product)
-        {
-            return back()->with('success' , 'محصول با موفقیت حذف شد');
-        }else {
-            return back()->with('fail' , 'هنگام حذف محصول مشکلی پیش امد');
+        if ($product) {
+            return back()->with('success', 'محصول با موفقیت حذف شد');
+        } else {
+            return back()->with('fail', 'هنگام حذف محصول مشکلی پیش امد');
         }
     }
 
@@ -109,7 +99,7 @@ class ProductsController extends Controller
     {
         $product = Product::findOrFail($product_id);
 
-        return response()->download(storage_path('app/local_storage/' . $product->source_url));
+        return response()->download(storage_path('app/local_storage/'.$product->source_url));
     }
 
     public function edit($product_id)
@@ -117,161 +107,140 @@ class ProductsController extends Controller
         $product = Product::findOrFail($product_id);
         $categories = Category::all();
 
-        return view('admin/products/edit' , compact('product','categories'));
+        return view('admin/products/edit', compact('product', 'categories'));
     }
 
     public function add2(CreateProcudts $request)
     {
         $validateData = $request->validated();
 
-        $user = User::where('email' , 'admin@gmail.com')->first();
+        $user = User::where('email', 'admin@gmail.com')->first();
 
-        $images = array
-        (
-            'thumbnail_url' => 
-                [
-                    'storage'=> 'public_storage',
-                    'fileName'=> $validateData['thumbnail_url'] ,
-                    'path' => 'products/' . $validateData['title'] . '/' . 'thumbnail_url_' . $validateData['thumbnail_url']->getClientOriginalName()
-                ],
-            'demo_url' => 
-                [
-                    'storage'=> 'public_storage',
-                    'fileName'=> $validateData['demo_url'] ,
-                    'path' => 'products/' . $validateData['title'] . '/' . 'demo_url_' . $validateData['demo_url']->getClientOriginalName()
-                ],
-            'source_url' => 
-                [
-                    'storage'=> 'local_storage',
-                    'fileName'=> $validateData['source_url'] ,
-                    'path' => 'products/' . $validateData['title'] . '/' . 'source_url_' . $validateData['source_url']->getClientOriginalName()
-                ]
-        );
+        $images = [
+            'thumbnail_url' => [
+                'storage' => 'public_storage',
+                'fileName' => $validateData['thumbnail_url'],
+                'path' => 'products/'.$validateData['title'].'/'.'thumbnail_url_'.$validateData['thumbnail_url']->getClientOriginalName(),
+            ],
+            'demo_url' => [
+                'storage' => 'public_storage',
+                'fileName' => $validateData['demo_url'],
+                'path' => 'products/'.$validateData['title'].'/'.'demo_url_'.$validateData['demo_url']->getClientOriginalName(),
+            ],
+            'source_url' => [
+                'storage' => 'local_storage',
+                'fileName' => $validateData['source_url'],
+                'path' => 'products/'.$validateData['title'].'/'.'source_url_'.$validateData['source_url']->getClientOriginalName(),
+            ],
+        ];
 
-        try 
-        {
+        try {
             ImageUploader::upload($images);
         } catch (\Throwable $th) {
             throw $th;
         }
 
-        $CreatedProduct = Product::create
-        (
+        $CreatedProduct = Product::create(
             [
-                'title'=>$validateData['title'],
-                'category_id'=>$validateData['category_id'],
-                'price'=>$validateData['price'],
-                'description'=>$validateData['description'],
-                'user_id'=>$user->id,
-                'thumbnail_url' => 'products/' . $validateData['title'] . '/' . 'thumbnail_url_' . $validateData['thumbnail_url']->getClientOriginalName(),
-                'demo_url' => 'products/' . $validateData['title'] . '/' . 'demo_url_' . $validateData['demo_url']->getClientOriginalName(),
-                'source_url' => 'products/' . $validateData['title'] . '/' . 'source_url_' . $validateData['source_url']->getClientOriginalName(),
+                'title' => $validateData['title'],
+                'category_id' => $validateData['category_id'],
+                'price' => $validateData['price'],
+                'description' => $validateData['description'],
+                'user_id' => $user->id,
+                'thumbnail_url' => 'products/'.$validateData['title'].'/'.'thumbnail_url_'.$validateData['thumbnail_url']->getClientOriginalName(),
+                'demo_url' => 'products/'.$validateData['title'].'/'.'demo_url_'.$validateData['demo_url']->getClientOriginalName(),
+                'source_url' => 'products/'.$validateData['title'].'/'.'source_url_'.$validateData['source_url']->getClientOriginalName(),
             ]
         );
 
-        
-        if($CreatedProduct)
-        {
-            return back()->with('success' , 'محصول با موفقیت اضافه شد');
-        }else {
-            return back()->with('fail' , 'هنگام اضافه کردن محصول مشکلی پیش امد');
+        if ($CreatedProduct) {
+            return back()->with('success', 'محصول با موفقیت اضافه شد');
+        } else {
+            return back()->with('fail', 'هنگام اضافه کردن محصول مشکلی پیش امد');
         }
     }
 
-    public function update(UpdateProductRequest $request , $product_id)
-    {   
-
+    public function update(UpdateProductRequest $request, $product_id)
+    {
         $validateData = $request->validated();
 
-        $images = array();
+        $images = [];
 
         $product = Product::find($product_id);
 
-        if (isset($validateData['thumbnail_url'])) 
-        {
+        if (isset($validateData['thumbnail_url'])) {
             $images +=
             [
-                'thumbnail_url' => 
-                [
-                    'storage'=> 'public_storage',
-                    'fileName'=> $validateData['thumbnail_url'] ,
-                    'path' => 'products/' . $validateData['title'] . '/' . 'thumbnail_url_' . $validateData['thumbnail_url']->getClientOriginalName()
-                
-                ]
+                'thumbnail_url' => [
+                    'storage' => 'public_storage',
+                    'fileName' => $validateData['thumbnail_url'],
+                    'path' => 'products/'.$validateData['title'].'/'.'thumbnail_url_'.$validateData['thumbnail_url']->getClientOriginalName(),
+
+                ],
             ];
 
-            $product->update
-            (
+            $product->update(
                 [
-                    'thumbnail_url' => 'products/' . $validateData['title'] . '/' . 'thumbnail_url_' . $validateData['thumbnail_url']->getClientOriginalName(),
+                    'thumbnail_url' => 'products/'.$validateData['title'].'/'.'thumbnail_url_'.$validateData['thumbnail_url']->getClientOriginalName(),
                 ]
             );
         }
 
-        if (isset($validateData['demo_url'])) 
-        {
-            $images += 
+        if (isset($validateData['demo_url'])) {
+            $images +=
             [
-                'demo_url' => 
-                [
-                    'storage'=> 'public_storage',
-                    'fileName'=> $validateData['demo_url'] ,
-                    'path' => 'products/' . $validateData['title'] . '/' . 'demo_url_' . $validateData['demo_url']->getClientOriginalName()
-                ]
+                'demo_url' => [
+                    'storage' => 'public_storage',
+                    'fileName' => $validateData['demo_url'],
+                    'path' => 'products/'.$validateData['title'].'/'.'demo_url_'.$validateData['demo_url']->getClientOriginalName(),
+                ],
             ];
 
-            $product->update
-            (
+            $product->update(
                 [
-                    'demo_url' => 'products/' . $validateData['title'] . '/' . 'demo_url_' . $validateData['demo_url']->getClientOriginalName(),
+                    'demo_url' => 'products/'.$validateData['title'].'/'.'demo_url_'.$validateData['demo_url']->getClientOriginalName(),
                 ]
             );
         }
 
         // && $validateData['source_url'] != $product->source_url
 
-        if (isset($validateData['source_url']) && $validateData['source_url'] != $product->source_url)
-        {
-            $images += 
+        if (isset($validateData['source_url']) && $validateData['source_url'] != $product->source_url) {
+            $images +=
             [
-                'source_url' => 
-                [
-                    'storage'=> 'local_storage',
-                    'fileName'=> $validateData['source_url'] ,
-                    'path' => 'products/' . $validateData['title'] . '/' . 'source_url_' . $validateData['source_url']->getClientOriginalName()
-                ]
+                'source_url' => [
+                    'storage' => 'local_storage',
+                    'fileName' => $validateData['source_url'],
+                    'path' => 'products/'.$validateData['title'].'/'.'source_url_'.$validateData['source_url']->getClientOriginalName(),
+                ],
             ];
 
-            $product->update
-            (
+            $product->update(
                 [
-                    'source_url' => 'products/' . $validateData['title'] . '/' . 'source_url_' . $validateData['source_url']->getClientOriginalName(),
+                    'source_url' => 'products/'.$validateData['title'].'/'.'source_url_'.$validateData['source_url']->getClientOriginalName(),
                 ]
             );
         }
 
-        try 
-        {
+        try {
             ImageUploader::upload($images);
         } catch (\Throwable $th) {
             throw $th;
         }
 
-        $product->update
-        (
+        $product->update(
             [
-                'title'=>$validateData['title'],
-                'category_id'=>$validateData['category_id'],
-                'price'=>$validateData['price'],
-                'description'=>$validateData['description'],
+                'title' => $validateData['title'],
+                'category_id' => $validateData['category_id'],
+                'price' => $validateData['price'],
+                'description' => $validateData['description'],
             ]
         );
 
-        if($product)
-        {
-            return back()->with('success' , 'محصول با موفقیت ویرایش شد');
-        }else {
-            return back()->with('fail' , 'هنگام ویرایش محصول خطایی رخ داده است');
+        if ($product) {
+            return back()->with('success', 'محصول با موفقیت ویرایش شد');
+        } else {
+            return back()->with('fail', 'هنگام ویرایش محصول خطایی رخ داده است');
         }
     }
 }

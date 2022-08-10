@@ -4,7 +4,6 @@ namespace App\Mail;
 
 use App\Models\User;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
@@ -17,7 +16,7 @@ class sendOrderImages extends Mailable
      *
      * @return void
      */
-    public function __construct(private array $images , private User $user)
+    public function __construct(private array $images, private User $user)
     {
         //
     }
@@ -29,13 +28,13 @@ class sendOrderImages extends Mailable
      */
     public function build()
     {
-        $email =  $this->view('mail.sendOrderImages')
+        $email = $this->view('mail.sendOrderImages')
             ->with([
-                'user' => $this->user
+                'user' => $this->user,
             ]);
 
         foreach ($this->images as $filePath) {
-            $email->attach(storage_path('app/local_storage/' . $filePath));
+            $email->attach(storage_path('app/local_storage/'.$filePath));
         }
 
         return $email;

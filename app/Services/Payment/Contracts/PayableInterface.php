@@ -6,4 +6,3 @@ interface PayableInterface
 {
     public function pay();
 }
-

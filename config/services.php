@@ -32,8 +32,8 @@ return [
 
     'getway' => [
         'IDPay' => [
-            'api_key' => 'febf725b-b13d-435c-ba48-8d603d23c172'
-        ]
-    ]
+            'api_key' => 'febf725b-b13d-435c-ba48-8d603d23c172',
+        ],
+    ],
 
 ];
