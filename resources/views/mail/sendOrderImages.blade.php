@@ -7,6 +7,10 @@
     <title>Document</title>
 </head>
 <body>
+    @php
+        //write user name
+        echo "عزیز ".$user->name."<br>";
+    @endphp
     <p>از خرید شما متشکریم</p>
 </body>
 </html>
